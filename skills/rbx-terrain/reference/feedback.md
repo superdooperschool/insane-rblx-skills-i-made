@@ -1,0 +1,54 @@
+# User feedback -> rules (append one line per verdict, newest last; read before every build)
+
+- 2026-09-26 User: "you're purely terrain" -> never add parts; fixed props (signs, spawns, shop, water) keep pads.
+- 2026-09-26 User: stay inside boundaries obvious to a human (rock areas, cliffs) -> mask locks Basalt/Rock/air-under.
+- 2026-09-26 User: loops don't work with this movement -> see movement.md "Never".
+- 2026-09-26 User: bulk terrain edits cap around 2048 x 2048 -> kit slabs stay <= 2048 studs per axis, <= 4.19M voxels.
+- 2026-09-26 Round 2: skull "looks dogshit, forget about it" -> no skulls.
+- 2026-09-26 Round 2: thin Basalt tube arch "looks ass" -> no thin decorative arches.
+- 2026-09-26 Round 2: raised ring + S swirl "can't get to it" -> bowls are depressions you roll into, never raised rings on flat.
+- 2026-09-26 Round 2: tunnel hill "no continuity" -> pieces must rise out of and blend into surrounding slopes, with a path leading in.
+- 2026-09-26 Round 2: seams near cliff foot "not smoothed" -> smoothing reaches ~12 studs from cliffs; blur never averages cliff cells.
+- 2026-09-26 Round 2: "more up down, rolly, bowls, curves, hills, drops" everywhere; flat ground is a failure.
+- 2026-09-26 Round 2: trees -> "learn how trees are placed via the analyse things" (flat spots, ~60-85 apart, not in ride areas); trees may move.
+- 2026-09-26 Round 3: "make terrain more CHUNKY" (pointed at an A4 double-tunnel mound) -> big bold masses, not subtle noise.
+- 2026-09-26 Round 3: path "not big enough, like a little stroke of limestone, needs 2x" -> paths >= 2x (A2 lanes 96-168); no thin paint strokes.
+- 2026-09-26 Round 3: web of thin lines, "hard to move in ball" -> fewer pieces, one flowing route, no crossings, no short-wavelength noise.
+- 2026-09-26 Round 3: "conversion looks ass and isn't smooth" -> long blends (40-80 studs) between pieces and into untouched ground.
+- 2026-09-26 Lesson: every check passed on all rejected builds. Metrics catch lumps, not design; get user sign-off on ONE piece before a full area.
+- 2026-09-26 Round 4 (Claude_Test_3 brief): "balls are a lot bigger than it seems" -> measure the in-game ball first; size lanes, bores, bowls, wall faces from ball diameter, not from studs that look right in Edit.
+- 2026-09-26 Round 4: "your only goal is to smoothly blend it in with the flat terrain around it so it looks natural" -> the box edge is the #1 check: zero seam into untouched ground, features sink back to the surrounding grade well inside the box.
+- 2026-09-26 Round 4: wants a LOT in one area: ups/downs, bowls, underground section linking two sides, huge hills, wall-rides, connecting bridges -> dense but still one connected flow; bridges are chunky land bridges (thin tube arch was rejected in round 2).
+- 2026-09-26 Round 5 (T3 v1): vertical-walled canyon "isn't smooth, if someone wants to get over it looks bad", "way too difficult to get across" -> NEVER cut sheer walls into free-roam ground; every depression keeps rollable sides (<= 25 deg) so it can be crossed anywhere.
+- 2026-09-26 Round 5: slot-roof bridges read as a hump / a broken ridge on the canyon floor -> a bridge is a smooth land ridge (heightfield) with a round underpass bored through it, never a thin deck.
+- 2026-09-26 Round 5: 145-tall hill "looks shit, way too big", "unclimbable" -> "huge" means wide, not tall: h <= 80, flank <= 20 deg (r >= h * 4.5).
+- 2026-09-26 Round 5: 3D cut faces painted Basalt look jagged/crunchy; cut edges leave dark stripes -> Basalt only inside bores; open ground stays grass-family, shaped by the heightfield (smooth by construction).
+- 2026-09-26 Round 5: table-top drop "useless"; carved hillside ledge "useless" -> no table-tops, no ledges. Wall-rides must be banks you ride along on the route (quarter-pipe into a steep face), crossable from behind.
+- 2026-09-26 Round 5: canyon exit "not smooth to get out", bowl edge with a wall "bad design" -> every exit from a low piece is a gentle ramp; nothing steep at a bowl rim.
+- 2026-09-26 Round 5: "no bowl/other stuff" (2 bowls in a 2048 box) -> density: 5+ bowls of mixed size, features every ~250 studs, all joined by smooth ground.
+- 2026-09-26 Round 6 (T3 v2): lattice of holes/spikes on steep heightfield faces (portal notch sides), sawtooth spikes on the wall-ride crest, "wall spikes are ass" -> nothing steep may be written as a column heightfield; steep or curved faces need true-distance occupancy, and crest edges must be rounded.
+- 2026-09-26 Round 6: Basalt tunnel lining "needs to be smooth, annoying" -> Basalt/Rock textures render as jagged crystals; line bores with a smooth material.
+- 2026-09-26 Round 6: straight creases/grooves across smooth grass "not smoothed", "sides shit" -> any field that switches branch (nearest-segment jumps inside bends, cover edges) leaves a crease; blends must be continuous in value AND slope.
+- 2026-09-26 Round 6: stray dark specks and small Limestone flecks "ugly with spikles" -> no isolated paint cells or single-voxel artifacts; paint regions need a minimum size.
+- 2026-09-26 Round 6: bowl "annoying hole, needs to be easier to get out" -> bowls shallower (walls <= 15 deg), wider.
+- 2026-09-26 Round 7 (T3 v3): big improvement; remaining: a hill "basically impossible to scale from this angle" -> every approach to every mound, including portal notch sides and flanks next to the route, <= 25 deg.
+- 2026-09-26 Round 7: underpass/tunnel openings "look buns, needs more arch" -> openings are true arches (vertical sides to a spring line, semicircular top), never a rounded rectangle.
+- 2026-09-26 Round 7: lining "materials below it are ass, should be rock mud ground etc a mix" -> bores and portal rims get a patchy mix of Rock, Mud and Ground (noise patches ~12-20 studs), not one flat material.
+- 2026-09-26 Round 8 (T4): "dont do big terrain changes in bulk, do it like 1 chunk next, its lagging my studio aswell as the heights" -> no full-box rebuilds (216k columns lagged Studio); edit one piece/chunk region per build, small Y range; fix = local op on that region only.
+- 2026-09-26 Round 9 (claude_big_test, 4 boxes): "hill size too big for a regular ball" -> free-roam mounds h 10-22, r 5-6.5 x h; only tunnel/cave hosts go to h 42-46 (just enough roof). T3/T4 hills (55-78) were too big.
+- 2026-09-26 Round 9: reference image = dense rolling mounds everywhere, light tops, darker sides, swirl crater, arch tunnels, river + bridge -> seeded mound field on a jittered 240 grid (skips path/river/walls/feature discs) + `shade = "lit"` paint; 80% flat ground read as empty.
+- 2026-09-26 Round 9: "work on shading" -> lit shading: crest Limestone (mound crestAt 0.5), flats LeafyGrass, slopes >= 13 deg and hollows Grass (darkest), noise blobs of Grass for variation.
+- 2026-09-26 Round 10 (big test v1): "need bigger hills and bigger dips" -> v1 mounds 10-22 too small; T3/T4 55-78 too big; aim h 30-50 (r >= 4.5 h), dips 15-30.
+- 2026-09-26 Round 10: "this isnt a racetrack, dont add a ground thing all around like a circle" -> no loop road around a free-roam map; paths are short trails over saddles between hills.
+- 2026-09-26 Round 10: "it seems all random, make it deliberate like this image 1:1" -> hand-place a composed layout from the reference (ASCII plan first); no random mound fields as the main content.
+- 2026-09-26 Round 10: props now allowed in claude_big_test: trees workspace.Models_Trees.Models (Tree_01..20), bush Stylized_Leaves_02, rocks workspace.rocks, scaled bigger, one folder.
+- 2026-09-27 Round 11 (big test v2): "never use cobblestone" -> Cobblestone banned (renders green/mossy here); Slate also green.
+- 2026-09-27 Round 12: Pavement (white brick tiles) "never use whatever this material is", "use rock + basalt" -> stone = Rock (StrataNoisy) + Basalt (StrataClean) noise mix on every face, bank, wall and arch. Never Pavement, never Cobblestone.
+- 2026-09-27 Round 12: "you didnt do the back area" (+X third of the back edge left flat) -> boundary cliffs span the FULL edge they belong to, ends tapered inside the feather; probe every edge third before reporting.
+- 2026-09-27 Round 12: "the middle bowls" (r 120-150, 20-24 deep, Leafy floor = invisible) -> bowls r 170-230, depth ~r/6.5, dark Grass floor + broad Limestone lip so they read from above.
+- 2026-09-27 Round 13 (big test v3 screenshot): isolated mounds painted crest-Limestone + Leafy ring on flat Grass read as polka dots, "half done" -> no per-mound crest/flank paint; continuous rolling (2 octaves, amp ~26) under dense overlapping hills; paint = fake sun shading (compose `sun`), so relief reads with GlobalShadows off.
+- 2026-09-27 Round 13: "more hills, more like bowl, more up down smooth" -> 10 bowls (r 165-200, depth r/6), fill field grid 150, no flat ground between features.
+- 2026-09-27 Round 13: "caves have big down thing that can connect to other spots" -> cliff caves join in pairs through deep underground dips (C1-C2, C3-new dry cave C4), plus a ravine that dives under a hill and surfaces elsewhere.
+- 2026-09-27 Round 13: "only come back once you have added bridges etc" -> finish every requested piece (bridges, caves, bowls) before reporting; no partial check-ins.
+- 2026-09-27 Round 14 (in-game shot, blades on): "you didnt highlight well enough", use Limestone, LeafyGrass, Grass and Slate with the custom grass on top -> 4-tone sun paint (Grass shadow, Leafy neutral, Slate lit, Limestone brightest); Slate un-banned as a tone. Blades take material colour, so paint is visible through the grass.
+- 2026-09-27 Round 14: "do the faster output, add that to ur terrain skill" -> SKILL.md "Fast loop": build 1-2 chunks, render (scripts/render), adjust; full pass only when right; report stuck gates after one try.

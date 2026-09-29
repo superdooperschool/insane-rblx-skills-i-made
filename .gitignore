@@ -1,0 +1,5 @@
+.port
+*.bak
+*.bak-*
+.insane-rblx
+node_modules/
