@@ -26,9 +26,6 @@ starts with one grep instead of forty `find`/`read` calls (measured: 843 unrange
    line), a value, a runtime state.
 4. **Regenerate** when the map gives a wrong answer or at the end of a session that created, moved,
    renamed or deleted scripts. Not on a schedule. ~90 s for 400 scripts. Read-only on the place.
-5. A script you substantially edit gets a top-of-file header block (what it does, exposed
-   functions/events/remotes, depends on) - the map's `header` field is that block, so next session's
-   map line is enough.
 
 ## What build.sh emits
 
@@ -41,8 +38,7 @@ starts with one grep instead of forty `find`/`read` calls (measured: 843 unrange
 ## Limits (say so instead of guessing)
 
 - Channels registered through a variable (`Net.handle(CH.order, ...)`) do not appear in `net:`.
-- `header` is the first block comment or first 3 comment lines, 160 chars; a script without one
-  shows nothing - add one when you touch it.
+- `header` shows the first block comment or first 3 comment lines of a script, 160 chars. Scripts without one show nothing, which is fine: never add comments to fill it.
 - The map is a snapshot; a peer session editing live can make it stale within the hour.
 
 ## Red flags

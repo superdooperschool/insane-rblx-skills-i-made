@@ -23,7 +23,7 @@ User hand off Studio task. User work elsewhere. You finish solid via MCP or surf
 ## Phase 2 — Execute
 - Use `script_read` before `multi_edit`. Never blind-edit.
 - Prefer `multi_edit` for batched changes — atomic, less round-trips.
-- Respect user code rules: NO `print()` for status/info logging, use `warn()` only for real errors. Strip narrative comments. Keep comment only if *why* non-obvious.
+- Respect user code rules: NO `print()` for status/info logging, use `warn()` only for real errors. Write no comments at all: names carry the meaning.
 - Luau idioms: typed `local` where helpful, `task.wait`/`task.spawn` over `wait`/`spawn`, `:GetService()` over direct globals, attributes/CollectionService over name-matching when fits.
 - Heavy script-tree exploration → spawn Explore agent. Keep main context clean.
 
@@ -42,7 +42,7 @@ If verify fail → fix → re-verify. Max 3 cycles. After 3 → STOP, surface bl
 - Scope creep added? Trim.
 - TODO/placeholder/mock left? Remove or flag explicitly.
 - Print spam crept in? Strip.
-- Comments minimal? Strip narration, keep only non-obvious *why*.
+- Zero comments? Remove every comment you added.
 - Edge cases user implied? List in report.
 
 ## Phase 5 — Report

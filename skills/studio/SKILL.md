@@ -161,7 +161,7 @@ tree that reads correct in JSON can render as a grey box in the viewport.
 - Re-read every changed script end to end.
 - Trim anything the request did not ask for.
 - No TODO, placeholder, or mock left unflagged. No `print()` spam.
-- Zero comments in code you write (house rule, see rbx skill). No headers, banners or why-notes.
+- Zero comments in code you write (no exceptions, see rbx skill). No headers, banners or why-notes.
 - State the edge cases the user implied but did not say.
 
 ## Step 8. Report

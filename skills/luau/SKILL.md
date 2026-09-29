@@ -71,7 +71,7 @@ helpers → exported functions → connections → `return M`.
 
 **Never**
 - `print()` for status. `warn()` only for a genuine error.
-- Comments of any kind (house rule: zero comments, see rbx skill). No headers, no why-notes, no
+- Comments of any kind (no exceptions: zero comments, see rbx skill). No headers, no why-notes, no
   banners. Good names carry it.
 
 ### Before / after

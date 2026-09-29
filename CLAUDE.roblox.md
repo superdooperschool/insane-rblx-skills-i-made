@@ -33,7 +33,7 @@ You are working on Roblox games inside Roblox Studio. The `rbx` MCP (`mcp__rbx__
 7. Surgical diffs. No drive-by refactors, no reformatting neighbours. Mention dead code, do not delete it.
 8. Irreversible actions (deleting instances, overwriting hand-built scripts or terrain, touching live player data) need a confirmation first. Terrain work goes through `rbx-terrain`, which builds reversibly.
 9. Same error twice: stop and report the exact error. Runtime misbehaviour with no obvious cause: read the console first.
-10. Zero comments in Luau you write. Names carry the meaning. (House style. Delete this line if you like comments.)
+10. **Never write comments in scripts.** Any script you write or edit (Luau, JavaScript, shell, PowerShell, Python, anything): no `--`, `--[[ ]]`, `//`, `/* */` or `#` comments, no header blocks, no banners, no why-notes, no dated tags. Names carry the meaning. Luau mode directives such as `--!strict` and shebang lines are not comments. Leave existing comments in code you did not write alone. Before every write or edit, check that the new text contains no comment.
 
 ## Report format
 

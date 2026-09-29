@@ -70,7 +70,7 @@ There is also a CLI for bursts of calls: about 104 ms per Studio call, so ten ca
 
 The installer also adds a Roblox block to `~/.claude/CLAUDE.md` (from [`CLAUDE.roblox.md`](CLAUDE.roblox.md)): a skill routing table, the hard rules (prove it before "done", server decides, one root `UIScale`, surgical diffs, confirm irreversible actions), and a report format. Claude then knows which skill to load for which job without being told. The block sits between `insane-rblx` markers, so re-running the installer updates it in place and your own notes stay untouched.
 
-The rules are opinionated (for example, zero comments in Luau). Edit `CLAUDE.roblox.md` before installing, or the block in your `CLAUDE.md` afterwards.
+Claude never writes comments in scripts once this is installed: names carry the meaning. The rest of the rules are opinionated too, and they are plain text in `CLAUDE.roblox.md` (or in the block in your `CLAUDE.md` afterwards).
 
 ## Good to know
 
